@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <com.android.volley.toolbox.NetworkImageView
+        android:id="@+id/newtwordImage"
+        android:layout_width="200dip"
+        android:layout_height="200dip"
+        android:layout_marginTop="12dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:id="@+id/text1"
+        tools:text="タイトル："
+        android:layout_centerVertical="true"
+        android:layout_toStartOf="@+id/newtwordImage" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        tools:text="著作者　："
+        android:layout_marginTop="37dp"
+        android:layout_below="@+id/text1"
+        android:layout_alignStart="@+id/text1"
+        android:id="@+id/text2" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        tools:text="出版社　："
+        android:layout_marginTop="37dp"
+        android:id="@+id/text3"
+        android:layout_below="@+id/text2"
+        android:layout_alignStart="@+id/text2" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:id="@+id/title"
+        tools:text="_in"
+        android:layout_alignBaseline="@+id/text1"
+        android:layout_alignBottom="@+id/text1"
+        android:layout_toEndOf="@+id/text1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:id="@+id/author"
+        tools:text="tyosya"
+        android:layout_alignBaseline="@+id/text2"
+        android:layout_alignBottom="@+id/text2"
+        android:layout_toEndOf="@+id/text2" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:id="@+id/publisher"
+        tools:text="syuppan"
+        android:layout_alignBaseline="@+id/text3"
+        android:layout_alignBottom="@+id/text3"
+        android:layout_toEndOf="@+id/text3" />
+
+    <Button
+        android:text="登録する"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/publisher"
+        android:layout_toEndOf="@+id/publisher"
+        android:layout_marginTop="20dp"
+        android:id="@+id/result_dialog_button" />
+
+</RelativeLayout>

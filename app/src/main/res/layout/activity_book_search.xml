@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+
+    <TextView
+        android:text="@string/book_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="9sp"
+        android:textSize="25sp"
+        android:id="@+id/book_title" />
+
+    <EditText
+        android:id="@+id/tvBookTitle"
+        android:layout_width="match_parent"
+        android:layout_height="50sp"
+        android:textSize="25sp"/>
+
+    <TextView
+        android:text="@string/book_author"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="9sp"
+        android:textSize="25sp"
+        android:id="@+id/book_author" />
+
+    <EditText
+        android:id="@+id/tvBookAuthor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"/>
+
+    <TextView
+        android:text="@string/book_isbn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="9sp"
+        android:textSize="25sp"
+        android:id="@+id/book_isbn" />
+
+    <EditText
+        android:id="@+id/tvBookIsbn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"/>
+
+    <TextView
+        android:text="@string/book_publisher"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="9sp"
+        android:textSize="25sp"
+        android:id="@+id/book_publisher" />
+
+    <EditText
+        android:id="@+id/tvBookPublisher"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"/>
+
+    <TextView
+        android:text="@string/book_published"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="9sp"
+        android:textSize="25sp"
+        android:id="@+id/book_published" />
+
+    <EditText
+        android:id="@+id/tvBookPublished"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"/>
+
+    <Button
+        android:id="@+id/tvBookSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="9sp"
+        android:textSize="18sp"
+        android:text="@string/menu_search" />
+
+</LinearLayout>
