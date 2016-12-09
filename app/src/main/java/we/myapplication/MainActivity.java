@@ -11,8 +11,12 @@ import android.widget.ListView;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.common.api.CommonStatusCodes;
+import com.google.android.gms.vision.barcode.Barcode;
 
 import android.content.Intent;
+
+import static android.R.attr.data;
 
 public class MainActivity extends AppCompatActivity {
     /** 通信リクエスト */
@@ -22,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private int NumberOfBooks = 0;
 
     private final int RESULT_SEARCH = 10000;
+    private static final int RC_BARCODE_CAPTURE = 9001;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,11 +83,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
                 return true;
             */
+            case R.id.menu_camera:
+                Intent camera_intent = new Intent(this, BarcodeCaptureActivity.class);
+                startActivityForResult(camera_intent, RC_BARCODE_CAPTURE);
+                return true;
 
             case R.id.menu_search:
-                Intent intent = new Intent(this, SearchActivity.class);
-                int reuestCode = RESULT_SEARCH;
-                startActivityForResult(intent,reuestCode);
+                Intent search_intent = new Intent(this, SearchActivity.class);
+                int requestCode = RESULT_SEARCH;
+                startActivityForResult(search_intent,requestCode);
                 return true;
 
             default:
@@ -94,11 +103,17 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onActivityResult(int requestCode,int resultCode,Intent intent){
         super.onActivityResult(requestCode,resultCode,intent);
-        if(requestCode == RESULT_SEARCH && resultCode == Activity.RESULT_OK && intent != null){
-            BooksDatabase.getInstance().add( (Book)intent.getSerializableExtra("Result"));
+        if(intent != null) {
             DisplayItemsAdapter adapter = DisplayItemsAdapter.getInscance();
-            adapter.notifyDataSetChanged();
+            if(requestCode == RESULT_SEARCH && resultCode == Activity.RESULT_OK){
+                BooksDatabase.getInstance().add( (Book)intent.getSerializableExtra("Result"));
+                adapter.notifyDataSetChanged();
 
+            }
+            if (requestCode == RC_BARCODE_CAPTURE && resultCode == CommonStatusCodes.SUCCESS ) {
+                Barcode barcode = intent.getParcelableExtra(BarcodeCaptureActivity.BarcodeObject);
+                adapter.addItemsFromISNB(barcode.displayValue);
+            }
         }
     }
     @Override
@@ -109,9 +124,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onStop(){
         super.onStop();
-//        Book book = new Book();
-//        book.setTitle("aaaaaaa");
-//        BooksDatabase.getInstance();
         BooksDatabase.getInstance().saveToFile(this);
     }
 

@@ -51,6 +51,7 @@
         tools:text="_in"
         android:layout_alignBaseline="@+id/text1"
         android:layout_alignBottom="@+id/text1"
+        android:layout_alignEnd="@+id/author"
         android:layout_toEndOf="@+id/text1" />
 
     <TextView
@@ -77,9 +78,9 @@
         android:text="登録する"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/publisher"
-        android:layout_toEndOf="@+id/publisher"
-        android:layout_marginTop="20dp"
-        android:id="@+id/result_dialog_button" />
+        android:layout_marginTop="17dp"
+        android:id="@+id/result_dialog_button"
+        android:layout_below="@+id/text3"
+        android:layout_alignStart="@+id/text3" />
 
 </RelativeLayout>

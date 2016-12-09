@@ -8,6 +8,12 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="com.google.android.gms.vision.DEPENDENCIES"
+            android:value="barcode" />
 
         <!--ActiveAndroidのデータベース名とバージョンを規定
         <meta-data
@@ -28,11 +34,14 @@
 
         <activity android:name=".SearchActivity"></activity>
         <activity android:name=".BookProfileActivity"></activity>
-
+        <activity android:name=".BarcodeCaptureActivity"
+            android:label="Read Barcode"/>
 
     </application>
-    <!-- インターネットへのアクセスを許可 -->
+    <!--パーミッション設定 -->
     <uses-permission android:name="android.permission.INTERNET" />;
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
 
 </manifest>
