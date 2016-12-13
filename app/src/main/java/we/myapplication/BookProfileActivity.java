@@ -2,6 +2,8 @@ package we.myapplication;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -42,11 +44,13 @@ public class BookProfileActivity extends AppCompatActivity {
         }
         SearchBookInfo info = new SearchBookInfo();
         String url = info.getBookInfo(maps);
+        url = info.getBookInfoAdd(url,1,25);
 
         ListView listView = (ListView)findViewById(R.id.ResultListView);
         final DisplaySearchResultsAdapter adapter = new DisplaySearchResultsAdapter(BookProfileActivity.this);
         //Litviewのアイテムがクリックされたときに呼ばれるコールバックをセット
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+                                            @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
                                             @Override
                                             public void onItemClick(AdapterView<?> parent,View view,int position,long id){
                                                 ResultDaialogFragment daialogFragment = ResultDaialogFragment.newInstance(adapter.getBook(position));

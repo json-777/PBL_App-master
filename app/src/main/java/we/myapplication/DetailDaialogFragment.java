@@ -2,7 +2,9 @@ package we.myapplication;
 
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,7 +23,9 @@ import org.w3c.dom.Text;
  *
  * */
 
+@RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
 public class DetailDaialogFragment extends DialogFragment {
+    @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
     static DetailDaialogFragment newInstance(Book book){
         DetailDaialogFragment f = new DetailDaialogFragment();
         Bundle args = new Bundle();
@@ -64,6 +68,7 @@ public class DetailDaialogFragment extends DialogFragment {
         }
         return v;
     }
+    @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
     @Override
     public void onActivityCreated(Bundle savedInstanceStade){
         super.onActivityCreated(savedInstanceStade);
@@ -73,7 +78,7 @@ public class DetailDaialogFragment extends DialogFragment {
         WindowManager.LayoutParams lp = dialog.getWindow().getAttributes();
 
         DisplayMetrics metrics= getResources().getDisplayMetrics();
-        int dialogWidth = (int)(metrics.widthPixels * 0.8);
+        int dialogWidth = (int)(metrics.widthPixels);
         int dialogHeight = (int)(metrics.heightPixels * 0.8);
 
         lp.width = dialogWidth;

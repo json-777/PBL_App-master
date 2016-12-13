@@ -168,7 +168,7 @@ public class SearchActivity extends AppCompatActivity {
 
         // ボタンオブジェクトの取得
         Button button = (Button) findViewById(R.id.tvBookSearch);
-        // ボタンオブジェクトにクリックリス設定
+        // ボタンオブジェクトにクリックリスナー設定
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

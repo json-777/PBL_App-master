@@ -1,11 +1,13 @@
 package we.myapplication;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -24,6 +26,8 @@ import java.util.Comparator;
 
 import javax.xml.parsers.ParserConfigurationException;
 
+import static android.widget.Toast.LENGTH_LONG;
+
 /**
  * Created by 一樹 on 2016/12/04.
  */
@@ -31,6 +35,8 @@ import javax.xml.parsers.ParserConfigurationException;
 public class DisplaySearchResultsAdapter extends BaseAdapter {
     private Context mContext;
     private ArrayList<Book> bookArrayList = new ArrayList<>();
+    private ProgressDialog progressDialog;
+
     private static class ViewHolder2{
         TextView title;
         TextView author;
@@ -43,6 +49,7 @@ public class DisplaySearchResultsAdapter extends BaseAdapter {
      */
     public DisplaySearchResultsAdapter(Context context){
         this.mContext = context;
+        progressDialog = new ProgressDialog(mContext);
     }
 
     public Book getBook(int index){
@@ -105,6 +112,10 @@ public class DisplaySearchResultsAdapter extends BaseAdapter {
      * @param url　国立国会図書館へのURL
      */
     public void acquireBookFromeInternet(String url){
+        progressDialog.setMessage("検索中です");
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.setCancelable(true);
+        progressDialog.show();
         VolleyXmlRequest mRequest  = new VolleyXmlRequest(
                 Request.Method.GET
                 ,url
@@ -113,6 +124,7 @@ public class DisplaySearchResultsAdapter extends BaseAdapter {
                 , new Response.Listener<InputStream>() {
             @Override
             public synchronized void onResponse(InputStream response) {
+                progressDialog.dismiss();
                 ArrayList<Book> books = new ArrayList<>();
                 try {
                     books = XmlParser.domParse(response);
@@ -146,7 +158,8 @@ public class DisplaySearchResultsAdapter extends BaseAdapter {
             @Override
             public void onErrorResponse(VolleyError error) {
                 // 通信失敗時の処理を行なう...
-                int a = 10;
+                progressDialog.dismiss();
+                Toast.makeText(mContext,"検索に失敗しました",LENGTH_LONG).show();
             }
 
         }

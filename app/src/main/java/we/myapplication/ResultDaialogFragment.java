@@ -3,7 +3,9 @@ package we.myapplication;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,17 +24,17 @@ import com.android.volley.toolbox.NetworkImageView;
  *
  * */
 
-public class ResultDaialogFragment extends DialogFragment {
-    private final int RESULT_SEARCH = 10000;
-
+public class ResultDaialogFragment extends DetailDaialogFragment {
+    @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
     static ResultDaialogFragment newInstance(Book book){
         ResultDaialogFragment f = new ResultDaialogFragment();
         Bundle args = new Bundle();
         args.putSerializable("book",book);
         f.setArguments(args);
-        return f;
+        return  f;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup containewr, Bundle savedInstanceState){
         View v = inflater.inflate(R.layout.dailog_result,containewr,false);
@@ -41,8 +43,6 @@ public class ResultDaialogFragment extends DialogFragment {
             //Bundleに保存したBookを取得する
             final Book book = (Book)arguments.getSerializable("book");
             if(book != null){
-
-
                 TextView text1 = (TextView)v.findViewById(R.id.text1);
                 text1.setText("タイトル：");
                 TextView text2 = (TextView)v.findViewById(R.id.text2);
@@ -50,8 +50,9 @@ public class ResultDaialogFragment extends DialogFragment {
                 TextView text3 = (TextView)v.findViewById(R.id.text3);
                 text3.setText("出版社　：");
                 Button button = (Button)v.findViewById(R.id.result_dialog_button);
-               //登録ボタンclick時の処理→MainActivity検索結果を返す
+                //登録ボタンclick時の処理→MainActivity検索結果を返す
                 button.setOnClickListener(new View.OnClickListener() {
+                    @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
                     @Override
                     public void onClick(View v) {
                         BookProfileActivity callingActivity = (BookProfileActivity)getActivity();
@@ -76,21 +77,4 @@ public class ResultDaialogFragment extends DialogFragment {
         }
         return v;
     }
-    @Override
-    public void onActivityCreated(Bundle savedInstanceStade){
-        super.onActivityCreated(savedInstanceStade);
-
-        //ダイアログサイズ変更
-        Dialog dialog = getDialog();
-        WindowManager.LayoutParams lp = dialog.getWindow().getAttributes();
-
-        DisplayMetrics metrics= getResources().getDisplayMetrics();
-        int dialogWidth = (int)(metrics.widthPixels * 0.8);
-        int dialogHeight = (int)(metrics.heightPixels * 0.8);
-
-        lp.width = dialogWidth;
-        lp.height = dialogHeight;
-        dialog.getWindow().setAttributes(lp);
-    }
-
 }

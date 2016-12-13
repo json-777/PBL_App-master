@@ -13,7 +13,7 @@
 
     <TextView
         android:text="TextView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="15sp"
         android:id="@+id/text1"
@@ -44,14 +44,13 @@
         android:layout_alignStart="@+id/text2" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="15sp"
         android:id="@+id/title"
         tools:text="_in"
         android:layout_alignBaseline="@+id/text1"
         android:layout_alignBottom="@+id/text1"
-        android:layout_alignEnd="@+id/author"
         android:layout_toEndOf="@+id/text1" />
 
     <TextView

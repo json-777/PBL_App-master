@@ -1,6 +1,8 @@
 package we.myapplication;
 
 import android.app.Activity;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -41,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
         //ListViewのレイアウト設定
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
             @Override
             public void onItemClick(AdapterView<?> parent,View view,int position,long id){
                 //ListViewが持ってるBookを因数を渡す
@@ -52,15 +55,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         );
-//        int padding = (int) (getResources().getDisplayMetrics().density * 8);
-//        LayoutInflater inflater = LayoutInflater.from(getApplicationContext());
-//        View header = inflater.inflate(R.layout.listview_header_footer,listView,false);
-//        View footer = inflater.inflate(R.layout.listview_header_footer,listView,false);
-//        listView.addHeaderView(header,null,false);
-//        listView.addFooterView(footer,null,false);
-//        listView.setDivider(null);
-//        listView.setScrollBarStyle(ListView.SCROLLBARS_OUTSIDE_OVERLAY);
-//        listView.setPadding(padding, 0, padding, 0);
         listView.setAdapter(adapter);
 
     }
